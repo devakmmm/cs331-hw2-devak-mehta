@@ -1,5 +1,5 @@
 -- Proposition 1: List the full and preferred names with emails of all employees in the company.
-SELECT FullName, PreferredName, EmailAddress, IsEmployee
+SELECT FullName, PreferredName, EmailAddress
 FROM Application.People
 WHERE IsEmployee=1;
 
@@ -47,18 +47,18 @@ WHERE PackedByPersonID =14;
 SELECT OrderID, CustomerID, OrderDate, DeliveryInstructions, ExpectedDeliveryDate
 FROM Sales.Orders
 WHERE SalespersonPersonID=15 AND CustomerID=10
-ORDER BY OrderID DESC;
+ORDER BY OrderDate DESC;
 
 -- Proposition 9: Retrieve stock item transactions linked to invoice 1336.
 SELECT StockItemTransactionID, StockItemID, CustomerID
 FROM Warehouse.StockItemTransactions
 WHERE InvoiceID=1336
-ORDER BY InvoiceID ASC;
+ORDER BY StockItemTransactionID ASC;
 
 -- Proposition 10: List distinct customers whose delivery city is either 2111 or 8987.
 SELECT DISTINCT CustomerID, CustomerName
 FROM Sales.Customers 
-WHERE DeliveryCityID=2111 OR DeliveryCityID=8987;
+WHERE DeliveryCityID in (2111,8987);
 
 -- Proposition 11: Display stock items with their unit price and calculate price including 8% tax.
 SELECT 
@@ -102,7 +102,7 @@ WHERE [Size] LIKE '%g';
 -- Proposition 16: Check stock item pricing to make sure it covers costs and meets tax requirements.
 --If the recommended retail price is less than the unit price, the item is flagged as RECHECK (retail price is below cost).
 --If the difference between retail and unit price is less than 15 and the tax rate is 15%, it’s also flagged as RECHECK (not enough margin to cover the tax).
-Otherwise, the item is considered OK.
+--Otherwise, the item is considered OK.
 SELECT 
     StockItemID, 
     SupplierID,
@@ -119,7 +119,7 @@ FROM Warehouse.StockItems;
 
 -- Proposition 17: Identify customers as “NEW” or “TRUSTED” based on their purchase order number.
 
-SELECT TOP(2) CustomerID, CustomerPurchaseOrderNumber,
+SELECT Top(20) CustomerID, CustomerPurchaseOrderNumber,
 	CASE
 		WHEN CustomerPurchaseOrderNumber<5 THEN 'NEW CUSTOMER'
 		WHEN CustomerPurchaseOrderNumber>18000 THEN 'TRUSTED CUSTOMER'
@@ -135,7 +135,7 @@ SELECT PersonID, FullName, LogonName, IsEmployee,
 		WHEN LogonName='NO LOGON' THEN 'LOGON NAME REQUIRED'
 	END AS [MISSING LOGON]
 FROM Application.People
-WHERE IsEmployee=1
+WHERE IsEmployee=1;
 
 
 -- Proposition 19: Find the single invoice line with the highest profit greater than 1.
