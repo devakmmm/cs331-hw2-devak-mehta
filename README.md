@@ -8,7 +8,13 @@ The assignment required us to write **20 propositions** and corresponding SQL qu
 ## 📂 Contents
 - **HW2_DevakMehta.sql** → All propositions (commented) + SQL queries.  
 - **HW2_DevakMehta.ipynb** → Notebook with propositions, queries, and saved outputs.  
-- **Video Walkthrough** → [link here once uploaded]  
+- **Video Walkthrough** → This is a ~7-minute video where I guide you through:
+
+- The notebook layout, propositions, and SQL details.
+- Real-world reasons behind each query.
+- Display of sample outputs right in the notebook.
+
+Watch it here: [Watch HW2 Video Walkthrough](https://youtu.be/JDMKnQyau2o) 
 
 ---
 
